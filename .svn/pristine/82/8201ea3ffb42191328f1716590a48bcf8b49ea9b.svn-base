@@ -1,0 +1,85 @@
+package domainModel.pharmacy;
+
+import java.io.Serializable;
+
+/**
+ * Created by Fang on 7/10/2016.
+ */
+public class Order implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private String id;
+    private String order_id;
+    private String doc_id;
+    private String pat_id;
+    private String phar_id;
+    private String order_time;
+    private String pick_time;
+    private String status;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
+    }
+
+    public String getDoc_id() {
+        return doc_id;
+    }
+
+    public void setDoc_id(String doc_id) {
+        this.doc_id = doc_id;
+    }
+
+    public String getPat_id() {
+        return pat_id;
+    }
+
+    public void setPat_id(String pat_id) {
+        this.pat_id = pat_id;
+    }
+
+    public String getPhar_id() {
+        return phar_id;
+    }
+
+    public void setPhar_id(String phar_id) {
+        this.phar_id = phar_id;
+    }
+
+    public String getOrder_time() {
+        return order_time;
+    }
+
+    public void setOrder_time(String order_time) {
+        this.order_time = order_time;
+    }
+
+    public String getPick_time() {
+        return pick_time;
+    }
+
+    public void setPick_time(String pick_time) {
+        this.pick_time = pick_time;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+}

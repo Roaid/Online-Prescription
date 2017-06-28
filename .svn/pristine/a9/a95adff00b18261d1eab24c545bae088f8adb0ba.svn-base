@@ -1,0 +1,29 @@
+package controller.pharmacy;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * Controller for pharmacy client
+ */
+@Controller
+public class PharmacyController {
+
+    //TODO,Here you should autowired a service for further business logic processing
+
+    private static final Logger logger = Logger.getLogger(PharmacyController.class);
+
+    @RequestMapping(value = "/pharmacyIndex")
+    public String pharmacyIndex(ModelMap model) {
+
+        String greeting = "Index is being accessed.";
+        model.addAttribute("message", greeting);
+
+        logger.debug(greeting);
+
+        return "pharmacyIndex";
+    }
+
+}

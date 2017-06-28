@@ -1,0 +1,17 @@
+package service.pharmacy;
+
+import org.json.JSONObject;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+
+/**
+ * Created by Fang on 2/10/2016.
+ */
+public interface PharmacyService {
+    void checkvalid();
+
+    JSONObject getAllOrdersJsonData(HttpServletRequest request);
+
+    JSONObject getAllStocksJsonData(HttpServletRequest request, String phar_id);
+}

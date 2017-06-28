@@ -1,0 +1,87 @@
+package controller.pharmacy;
+
+import org.apache.log4j.Logger;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import service.pharmacy.PharmacyService;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+
+/**
+ * Controller for pharmacy client
+ */
+@Controller
+public class PharmacyController {
+    @Autowired
+    PharmacyService pharService;
+
+    //TODO,Here you should autowired a service for further business logic processing
+
+    private static final Logger logger = Logger.getLogger(PharmacyController.class);
+    String phar_id = "1";
+
+    @RequestMapping(value = "/pharmacyIndex")
+    public String pharmacyIndex(ModelMap model) {
+        pharService.checkvalid();
+        String user = "test0";
+        //JSONObject obj = pharService.getAllOrders(user);
+
+        return "domain/pharmacy/pharmacyIndex";
+    }
+    @RequestMapping(value = "/checkOrders")
+    public String checkOrders(ModelMap model) {
+        pharService.checkvalid();
+        String user = "test0";
+        //JSONObject obj = pharService.getAllOrders(user);
+
+        return "domain/pharmacy/pharmacyOrders";
+    }
+    @RequestMapping(value="/getAllOrdersJsonData")
+    @ResponseBody
+    public String getAllOrdersJsonData(HttpServletRequest request){
+        logger.info("demo data table called........");
+        JSONObject obj = pharService.getAllOrdersJsonData(request);
+        return obj.toString();
+    }
+    @RequestMapping(value = "/Order{name}")
+    public String Order(@PathVariable("name") String order_id, ModelMap model) {
+
+        model.put("onum", order_id);
+        // TODO get patient details.
+        // TODO get doctor details.
+
+        return "domain/pharmacy/Order";
+    }
+
+    @RequestMapping(value="/getOrderDetailJsonData{name}")
+    @ResponseBody
+    public String getOrderDetailJsonData(@PathVariable("name") String order_id,HttpServletRequest request){
+        logger.info("Test    data table called........");
+        JSONObject obj = pharService.getOrderDetailJsonData(request,order_id);
+        return obj.toString();
+    }
+
+
+    @RequestMapping(value = "/checkStocks")
+    public String checkStocks(ModelMap model) {
+        return "domain/pharmacy/pharmacyStocks";
+    }
+    @RequestMapping(value="/getAllStocksJsonData")
+    @ResponseBody
+    public String getAllStocksJsonData(HttpServletRequest request){
+        logger.info("demo data table called........");
+        JSONObject obj = pharService.getAllStocksJsonData(request,phar_id);
+        return obj.toString();
+    }
+
+
+
+
+}
